@@ -1,0 +1,13 @@
+b=imread('classes.jpg');
+a = rgb2gray(b);
+f=fspecial('laplacian');
+af=filter2(f,a);
+figure,imshow(af);
+e=edge(a,'log');
+figure,imshow(e);
+h=fspecial('disk');
+e1=edge(a,'zerocross',h);
+figure,imshow(e1);
+h=fspecial('average');
+e2=edge(a,'zerocross',h);
+figure,imshow(e2);

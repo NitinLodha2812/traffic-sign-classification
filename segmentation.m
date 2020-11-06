@@ -1,0 +1,18 @@
+close all;
+I= imread('classes.jpg');
+II=rgb2gray(I);
+I1 = imtophat(II, strel('disk',10));
+figure,imshow(I1);
+I2=imadjust(I1);
+figure,imshow(I2);
+level = graythresh(I2);
+BW = im2bw(I2,level);
+figure,imshow(BW);
+C=~BW;
+figure,imshow(C);
+D = -bwdist(C);
+D(C) = -Inf;
+L = watershed(D);
+figure,imshow(L);
+Wi=label2rgb(L,'hot','w');
+figure,imshow(Wi);
